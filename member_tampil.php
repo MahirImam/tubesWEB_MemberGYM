@@ -12,7 +12,6 @@
 </thead>
 <tbody>
 <?php
-// Query mengambil semua data member dan join dengan users
 $query = mysqli_query($conn, "SELECT 
     m.*, 
     u.username 
@@ -22,7 +21,6 @@ $query = mysqli_query($conn, "SELECT
 $no = 0;
 while($data = mysqli_fetch_array($query)){
     $no++;
-    // Tentukan status kadaluarsa
     $status_expired = (strtotime($data['tgl_kadaluarsa']) < strtotime(date('Y-m-d'))) ? 'style="color:red; font-weight:bold;"' : '';
 ?>
     <tr <?= $status_expired ?>>
