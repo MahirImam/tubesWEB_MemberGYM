@@ -12,7 +12,6 @@ function sanitize($conn, $input) {
     return mysqli_real_escape_string($conn, $input);
 }
 
-// 1. Ambil Data Form
 $username = sanitize($conn, $_POST['username']);
 $password = sanitize($conn, $_POST['password']);
 $nama_lengkap = sanitize($conn, $_POST['nama_lengkap']);
@@ -22,7 +21,6 @@ $tgl_kadaluarsa = sanitize($conn, $_POST['tgl_kadaluarsa']);
 
 $tgl_gabung = date('Y-m-d');
 
-// Data Foto Profil
 $foto = $_FILES['foto_profil']['name'];
 $lokasi = $_FILES['foto_profil']['tmp_name'];
 $tipefile = $_FILES['foto_profil']['type'];
@@ -30,13 +28,11 @@ $ukuranfile = $_FILES['foto_profil']['size'];
 $foto_nama_final = "";
 $error = "";
 
-// 2. Validasi Username & Cek Duplikasi
 $check_user = mysqli_query($conn, "SELECT username FROM users WHERE username='$username'");
 if (mysqli_num_rows($check_user) > 0) {
     $error = "Username sudah digunakan!";
 }
 
-// 3. Proses Upload Foto
 if ($error == "" && !empty($foto)) {
     if ($tipefile != "image/jpeg" && $tipefile != "image/jpg" && $tipefile != "image/png") {
         $error = "Tipe file foto tidak didukung.";
@@ -49,7 +45,6 @@ if ($error == "" && !empty($foto)) {
     }
 }
 
-// 4. Eksekusi INSERT ke Dua Tabel
 if ($error == "") {
     $sql_user = "INSERT INTO users (username, password, role) VALUES ('$username', '$password', 'user')";
     $insert_user = mysqli_query($conn, $sql_user);
@@ -73,7 +68,6 @@ if ($error == "") {
     }
 }
 
-// 5. Notifikasi Error
 if ($error != "") {
     echo "<script>alert('Pendaftaran Gagal: $error')</script>";
     echo "<meta http-equiv='refresh' content='3; url=members_crud.php'>";
