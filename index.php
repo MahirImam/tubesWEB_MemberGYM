@@ -34,7 +34,7 @@ $username = $_SESSION['username'];
     <section class="main">
         <h1>Selamat Datang, <?= $username ?> (<?= strtoupper($role) ?>)</h1>
         <hr>
-        <h2>💡 Info Kesehatan dan Kebugaran Hari Ini</h2>
+        <h2>Info Kesehatan dan Kebugaran Hari Ini</h2>
         <div class="info-box" style="background-color: #e3f2fd; padding: 15px; border-radius: 8px;">
             <p>Tubuh yang sehat berawal dari kebiasaan yang teratur. Berikut tips hari ini:</p>
             <ul>
