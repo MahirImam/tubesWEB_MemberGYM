@@ -1,5 +1,4 @@
 <?php
-// Membuat koneksi ke basis data db_gym
 $host = 'localhost';
 $user = 'root';
 $pass = "";
